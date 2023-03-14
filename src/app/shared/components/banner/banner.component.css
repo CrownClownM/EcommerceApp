@@ -1,0 +1,13 @@
+.banner {
+    margin: 0 auto;
+    padding: 10px 0px;
+    background-color: aqua;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    margin: 0px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}

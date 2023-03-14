@@ -1,0 +1,12 @@
+<app-carousel></app-carousel>
+<app-banner [banner]="banner1"></app-banner>
+<app-gallery [categorie]="categories"></app-gallery>
+<app-banner [banner]="banner2"></app-banner>
+<div class="container">
+    <app-categories *ngFor="let categorie of categories" [categorie]="categorie"></app-categories>
+</div>
+<app-banner [banner]="banner3"></app-banner>
+<div class="container">
+    <app-card *ngFor="let product of products" [product]="product"></app-card>
+</div>
+

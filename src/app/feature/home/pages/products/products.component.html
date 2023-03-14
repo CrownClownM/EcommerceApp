@@ -1,0 +1,16 @@
+<div class="main">
+    <form (ngSubmit)="search()" autocomplete="off">
+        <input type="text" 
+                name="termino"
+                class="search-bar" 
+                [(ngModel)]="word"
+                placeholder="Buscar">
+    </form>
+    <div class="spinner-border text-warning" role="status" style="width: 5rem; height: 5rem;" *ngIf="loadData">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="container">
+        <app-card *ngFor="let product of products" [product]="product"></app-card>
+    </div>
+</div>
+

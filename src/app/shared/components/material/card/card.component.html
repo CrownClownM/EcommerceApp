@@ -1,0 +1,13 @@
+<mat-card class="example-card">
+  <div class="image">
+    <img mat-card-image src="{{product.images[0]}}" alt="Photo of a product">
+  </div>
+  <mat-card-content>
+    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-subtitle>${{product.price}}</mat-card-subtitle>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="/product/{{product.id}}" >VER ARTICULO</button>
+    <button mat-button>AGREGAR AL CARRITO</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,60 @@
+.example-card {
+    position: relative;
+    width: 350px;
+    height: auto;
+    overflow: hidden;
+}
+
+.image{
+  overflow: hidden;
+  height: 200px;
+}
+
+.example-card img {
+  transition: transform 0.5s;
+}
+
+.example-card img:hover{
+  transform: scale(1.1);
+}
+
+mat-card {
+  margin: 20px 10px;
+  padding: 0px;
+}
+
+mat-card-title {
+  font-size: 20px;
+}
+
+mat-card-content {
+  padding: 14px;
+  margin-bottom: 0px;
+}
+
+mat-card-subtitle {
+  right: 0;
+}
+
+mat-card-actions {
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+
+mat-card mat-card-actions:last-child{
+  margin-bottom: 0px;
+}
+
+mat-card-actions button {
+  margin: 0px auto;
+  padding: 0px 30px;
+}
+
+button {
+  transition: 0.5s;
+}
+
+button:hover {
+  background-color: var(--alt-color);
+}

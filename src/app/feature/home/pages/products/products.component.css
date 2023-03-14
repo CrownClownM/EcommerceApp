@@ -1,0 +1,26 @@
+.main {
+    text-align: center;
+}
+
+.container {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.search-bar {
+	width: 70%;
+	height: 40px;
+	line-height: 40px;
+	background: #fff;
+	padding: 0 20px;
+	border-radius: 100px;
+	text-align: center;
+	font-size: 16px;
+    margin: 20px 0px;
+    border-style: double;
+    border-color: var(--alt-color);
+}
