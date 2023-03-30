@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-
 import { CarouselComponent } from '../shared/components/carousel/carousel.component';
 import { GalleryComponent } from '../shared/components/gallery/gallery.component';
 import { CardComponent } from '../shared/components/material/card/card.component';
 import { CategoriesComponent } from '../shared/components/categories/categories.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { RouterModule } from '@angular/router';
+import { Material_Modules } from './components/material/material.index';
+import { PaginatorComponent } from './components/material/paginator/paginator.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 
 @NgModule({
@@ -18,20 +18,23 @@ import { RouterModule } from '@angular/router';
     GalleryComponent,
     CardComponent,
     CategoriesComponent,
-    BannerComponent
+    BannerComponent,
+    PaginatorComponent,
+    SortPipe
   ],
   exports: [
     CarouselComponent,
     GalleryComponent,
     CardComponent,
     CategoriesComponent,
-    BannerComponent
+    BannerComponent,
+    PaginatorComponent,
+    SortPipe
   ],
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    RouterModule
+    RouterModule,
+    Material_Modules,
   ],
 })
 export class SharedModule { }

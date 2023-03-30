@@ -1,4 +1,4 @@
-.example-card {
+.card-product {
     position: relative;
     width: 350px;
     height: auto;
@@ -10,16 +10,16 @@
   height: 200px;
 }
 
-.example-card img {
+.card-product img {
   transition: transform 0.5s;
 }
 
-.example-card img:hover{
+.card-product img:hover{
   transform: scale(1.1);
 }
 
 mat-card {
-  margin: 20px 10px;
+  margin: 15px 0px;
   padding: 0px;
 }
 

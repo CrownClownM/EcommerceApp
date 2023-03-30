@@ -1,8 +1,7 @@
 .container {
     margin: 60px auto;
     height: auto;
-    background: white;
-    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 10px 3px var(--box);
   }
   
   .left, .right {

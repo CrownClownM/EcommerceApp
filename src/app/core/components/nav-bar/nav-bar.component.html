@@ -1,33 +1,35 @@
-<header>
+<header class="border-bottom">
     <div class="logo">
         <a routerLink="./"><img src="../../../../assets/logo1.png" alt=""></a>
     </div>
     <input type="checkbox" id="nav_check" hidden>
     <nav>
         <div class="logo">
-            <img src="../../../../assets/logo1.png" alt="">
+            <img routerLink="./" src="../../../../assets/logo1.png" alt="">
         </div>
         <ul>
             <li>
                 <a routerLink="/">Home</a>
             </li>
             <li>
-                <a routerLink="/products">Products</a>
+                <a routerLink="/products">Productos</a>
             </li>
             <li>
-                <a><i class="fa-solid fa-cart-shopping"></i></a>
+                <a><i matBadge="15" matBadgeSize="small" matBadgeColor="warn" class="fa-solid fa-cart-shopping"></i><span> Carrito</span></a>
             </li>
             <li>
-                <a><i class="fa-solid fa-user"></i></a>
+                <a routerLink="/auth"><i class="fa-solid fa-user"></i><span> Iniciar sesión</span></a>
             </li>
             <li>
-                <a class="night"><img class="image" src="../../../../assets/moon.png" id="btnIcon"></a>
+                <a class="night" (click)="NightMode()"><img #btnIcon class="image" [src]="imageBase"><span> Cambiar tema</span></a>
             </li>
         </ul>
     </nav>
     <label for="nav_check" class="hamburger">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
+        <div class="x">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
     </label>
 </header>

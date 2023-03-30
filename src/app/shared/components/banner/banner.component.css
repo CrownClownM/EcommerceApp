@@ -11,3 +11,17 @@ h2 {
     letter-spacing: 10px;
     text-transform: uppercase;
 }
+
+@media screen and (max-width: 600px) {
+    h2 {
+        letter-spacing: 5px;
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h2 {
+        letter-spacing: 3px;
+        font-size: 65%;
+    }
+}

@@ -9,7 +9,7 @@ import { StoreService } from 'src/app/shared/services/store.service';
 })
 export class HomeComponent implements OnInit {
 
-  quantity : number = 5;
+  quantity : number = 4;
   categories !: CategoriesResponse[];
   products !: ProductsResponse[];
   banner1 = "Descubre las tendencias del mercado";
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.store.categories()
       .subscribe( categories => this.categories = categories);
-    this.store.allProducts(this.quantity)
+    this.store.someProducts(this.quantity)
       .subscribe( products => this.products = products);
   }
 

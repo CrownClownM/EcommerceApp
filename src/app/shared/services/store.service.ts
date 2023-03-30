@@ -16,10 +16,14 @@ export class StoreService {
 
   constructor( private http: HttpClient ) { }
 
-  allProducts(cantidad:number): Observable<ProductsResponse[]>{
+  someProducts(quantity:number): Observable<ProductsResponse[]>{
     const offset = `0`;
-    const url = `${ this.baseUrl }/products?offset=${offset}&limit=${cantidad}`;
-    console.log(url);
+    const url = `${ this.baseUrl }/products?offset=${offset}&limit=${quantity}`;
+    return this.http.get<ProductsResponse[]>(url);
+  }
+
+  allProducts(): Observable<ProductsResponse[]>{
+    const url = `${ this.baseUrl }/products`;
     return this.http.get<ProductsResponse[]>(url);
   }
 
@@ -28,10 +32,9 @@ export class StoreService {
     return this.http.get<ProductsResponse>(url);
   }
 
-  searchProducts(busqueda:String, cantidad:number): Observable<ProductsResponse[]>{
+  searchProducts(busqueda:String): Observable<ProductsResponse[]>{
     const offset = `0`;
-    const url = `${ this.baseUrl }/products?title=${busqueda}&offset=${offset}&limit=${cantidad}`;
-    console.log(url);
+    const url = `${ this.baseUrl }/products?title=${busqueda}&offset=${offset}`;
     return this.http.get<ProductsResponse[]>(url);
   }
 
@@ -40,6 +43,11 @@ export class StoreService {
     const cantidad = `5`;
     const url = `${ this.baseUrl }/categories?offset=${offset}&limit=${cantidad}`;
     return this.http.get<CategoriesResponse[]>(url);
+  }
+
+  filterCategories(id:number): Observable<ProductsResponse[]>{
+    const url = `${ this.baseUrl }/products/?categoryId=${id}`;
+    return this.http.get<ProductsResponse[]>(url);
   }
 
 }
