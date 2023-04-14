@@ -50,3 +50,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: var(--scroll-thumb-radius, var(--scroll-radius));
 }
   
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

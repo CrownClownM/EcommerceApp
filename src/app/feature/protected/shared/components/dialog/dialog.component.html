@@ -1,0 +1,36 @@
+<div mat-dialog-title>
+  <h1>Formulario del producto</h1>
+</div>
+<form [formGroup]="form" (ngSubmit)="sendForm()">
+  <div mat-dialog-content class="content">
+    <mat-form-field class="example-form-field">
+      <mat-label>Titulo</mat-label>
+      <input matInput type="text" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Precio</mat-label>
+      <input matInput type="number" formControlName="price">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Descripción</mat-label>
+      <input matInput type="text" formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="categorie">
+        <mat-option *ngFor="let categorie of categories" [value]="categorie.id">{{categorie.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+<!--   <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+  </div> -->
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button [mat-dialog-close]="false">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">Crear</button>
+  </div>
+</form>

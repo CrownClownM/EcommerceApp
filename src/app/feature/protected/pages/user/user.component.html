@@ -1,0 +1,6 @@
+<div class="head">
+    <h1>Bienvenido, ññ</h1>
+    <button mat-raised-button color="success" class="logout" (click)="logout()"><i class="fa-solid fa-door-open fa-lg"></i> Cerrar sesión</button>
+</div>
+<app-table [products]="products" (newTable)="update($event)"></app-table>
+<app-paginator [products]="productsPaginator" [length]="length" [pageIndex]="index" (paginated)="paginated($event)"></app-paginator>

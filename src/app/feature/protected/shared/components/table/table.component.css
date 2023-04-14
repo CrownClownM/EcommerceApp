@@ -1,0 +1,58 @@
+table {
+    width: 100%
+}
+
+button {
+    margin: 0px 5px;
+}
+
+.buttons {
+    display: inline-block;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create {
+    background-color: rgb(5, 170, 5);
+    color: white;
+}
+
+.container1 {
+    min-height: 50vh;
+    padding: 15px 0px;
+    margin: 0px auto;
+    width: 80%;
+}
+
+.container2 {
+    min-height: 50vh;
+    padding: 15px 0px;
+    margin: 0px auto;
+    width: 90%;
+}
+
+mat-icon {
+    font-size: large;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1348px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.action {
+    display: flex;
+    gap: 5px;
+}

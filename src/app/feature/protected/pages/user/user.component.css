@@ -1,0 +1,13 @@
+button {
+    margin: 0px 5px;
+}
+
+.logout {
+    background-color: rgb(194, 25, 20);
+    color: white;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+}
