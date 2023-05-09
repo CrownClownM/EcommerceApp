@@ -29,15 +29,11 @@ export class LoginComponent {
     const { email, password } = this.miFormulario.value;
     this.store.login( email, password ).subscribe({
       next: (resp:any) => {
-        if(resp) {
+        if (resp.role == 'customer') {
           this.router.navigateByUrl('/user');
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Usuario o contraseña incorrecto',
-        })
-      }},
+        } else if (resp.role == 'admin') {
+          this.router.navigateByUrl('/user/admin');
+        } },
       error: (error) => {
         console.log(error);
         Swal.fire({

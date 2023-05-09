@@ -1,3 +1,13 @@
+mat-card {
+  text-align: center;
+  background-color: var(--text);
+  color: var(--background);
+}
+
+mat-card:not([class*=mat-elevation-z]){
+  box-shadow: 0px 2px 1px -1px var(--shadow), 0px 1px 1px 0px var(--shadow), 0px 1px 3px 0px var(--shadow);
+}
+
 .card-product {
     position: relative;
     width: 350px;
@@ -34,6 +44,7 @@ mat-card-content {
 
 mat-card-subtitle {
   right: 0;
+  color: var(--alt-color);
 }
 
 mat-card-actions {

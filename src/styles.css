@@ -5,7 +5,10 @@
     --text: rgb(255, 255, 255);
     --gra: linear-gradient(45deg, #e1a743, #ffa200);
     --mode: #325bb3;
+    --mode-back: #0c52e9;
+    --mode-hover: #0c52e9;
     --box:rgba(0, 0, 0, 0.3);
+    --shadow:rgba(0, 0, 0, 0.12);
     /* Variables barra de scroll */
     --scroll-size: 1rem;
     --scroll-radius: 1rem;
@@ -30,8 +33,9 @@ body {
 .night-theme {
     --background: #ffffff;
     --text: rgb(0, 0, 0);
-    --mode: #e1a743;
+    --mode-hover: #e1a743;
     --box:rgba(255, 255, 255, 0.3);
+    --shadow:rgba(255, 255, 255, 0.12);
 }
 
 body::-webkit-scrollbar {

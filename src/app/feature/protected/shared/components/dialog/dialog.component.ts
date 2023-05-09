@@ -32,17 +32,14 @@ export class DialogComponent implements OnInit {
       this.categories = categories;
     })
     this.form.patchValue(this.data)
-    console.log(this.data);
   }
 
   sendForm(){
     const { title, price, description, categorie } = this.form.value;
-    console.log(categorie);
     if (this.data) {
       this.store.updateProduct(this.data.id, title, price, description, categorie, this.data.images)
       .subscribe(resp => {
         if(resp.id){
-          console.log(resp);
           const dialogRef = this.dialog.close(true);
           Swal.fire({
             icon: 'success',

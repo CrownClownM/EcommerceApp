@@ -82,7 +82,7 @@ nav ul li a span{
 }
 
 nav ul li .night:hover {
-  background: var(--mode);
+  background: var(--mode-hover);
 }
 
 .image {

@@ -1,68 +1,72 @@
-<div class="container1">
-  <div class="head">
-    <h1>Productos</h1>
-    <button mat-raised-button color="success" class="create" (click)="dialogForm()"><i class="fa-solid fa-plus fa-lg"></i> Crear producto</button>
-  </div>
-  <table class="table table-striped table-hove">
-    <thead>
-        <tr>
-        <th>Titulo</th>
-        <th>Precio</th>
-        <th>Descrpición</th>
-        <th>Categoria</th>
-        <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products">
-          <td>{{ product.title }}</td>
-          <td>{{ product.price }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.category.name }}</td>
-          <td class="buttons">
-            <button class="btn btn-primary btn-sm me-1" (click)="dialogFormEdit(product)"><i class="fa-solid fa-pen-to-square"></i> Editar </button>
-            <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)"><i class="fa-sharp fa-solid fa-trash"></i> Eliminar </button>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+<div class="head">
+  <h1>Productos</h1>
+  <button mat-raised-button color="success" class="create" (click)="dialogForm()"><i class="fa-solid fa-plus fa-lg"></i> Crear producto</button>
 </div>
+<table class="table" matSort (matSortChange)="sortData($event)">
+  <thead>
+      <tr>
+      <th>Imagen</th>
+      <th mat-sort-header="title">Titulo</th>
+      <th mat-sort-header="price">Precio</th>
+      <th mat-sort-header="description">Descrpición</th>
+      <th mat-sort-header="category">Categoria</th>
+      <th>Acciones</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let product of products">
+        <td><img src="{{ product.images[0] }}"class="img-fluid"></td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.category.name }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-1" (click)="dialogFormEdit(product)"><i class="fa-solid fa-pen-to-square"></i> Editar </button>
+          <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)"><i class="fa-sharp fa-solid fa-trash"></i> Eliminar </button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
 
 <!-- 
-<div class="container2">
-  <table mat-table [dataSource]="products" matSort>
+<table mat-table [dataSource]="products" matSort (matSortChange)="sortData($event)">
 
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef> Titulo </th>
-      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-    </ng-container>
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> Imagen </th>
+    <td mat-cell *matCellDef="let element"><img src="{{element.images[0]}}"class="img-fluid"></td>
+  </ng-container>
 
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Precio </th>
-      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-    </ng-container>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="title"> Titulo </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Descripción </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="price"> Precio </th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef> Categoria </th>
-      <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
-    </ng-container>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="description"> Descripción </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-raised-button color="primary"><i class="fa-solid fa-pen-to-square"></i>Actualizar </button>
-        <button mat-raised-button color="warn" ><i class="fa-sharp fa-solid fa-trash"></i> Eliminar </button>
-      </td>
-    </ng-container>
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="category"> Categoria </th>
+    <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
- -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let row">
+      <button mat-raised-button color="primary"><i class="fa-solid fa-pen-to-square"></i> Editar </button>
+      <button mat-raised-button color="warn" ><i class="fa-sharp fa-solid fa-trash"></i> Eliminar </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->
+
   

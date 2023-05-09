@@ -6,13 +6,19 @@ button {
     margin: 0px 5px;
 }
 
-.buttons {
-    display: inline-block;
+td {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+img {
+    width: 100px;
 }
 
 .head {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 .create {
@@ -20,18 +26,16 @@ button {
     color: white;
 }
 
+.table {
+    background-color: var(--text);
+    color: var(--background);
+}
+
 .container1 {
     min-height: 50vh;
     padding: 15px 0px;
     margin: 0px auto;
-    width: 80%;
-}
-
-.container2 {
-    min-height: 50vh;
-    padding: 15px 0px;
-    margin: 0px auto;
-    width: 90%;
+    width: 100%;
 }
 
 mat-icon {

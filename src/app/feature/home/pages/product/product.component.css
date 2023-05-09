@@ -96,6 +96,15 @@
     transition: all 0.5s;
     background: var(--alt-color-hover);
   }
+
+  .back {
+    margin-top: 20px;
+    background: var(--mode);
+  }
+
+  .back:hover {
+    background: var(--mode-back);
+  }
   
   @media only screen and (max-width:768px) {
     .container {

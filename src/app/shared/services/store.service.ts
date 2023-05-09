@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
+import { getCookie, setCookie, removeCookie } from 'typescript-cookie'
+import jwt_decode, {JwtPayload} from "jwt-decode";
 
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
-
-import { CategoriesResponse, ProductsResponse } from '../interfaces/store.interface';
 import { environment } from 'src/environments/environment.prod';
+import { CategoriesResponse, ProductsResponse } from '../interfaces/store.interface';
 import { LoginResponse, RegisterResponse } from '../interfaces/auth.interface';
 import { checkToken } from '../interceptors/token.interceptor';
-
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class StoreService {
 
   private baseUrl: string = environment.baseUrl;
+  existToken$ = new BehaviorSubject<boolean>(false);
 
   constructor( private http: HttpClient ) { }
 
@@ -69,15 +70,20 @@ export class StoreService {
     return this.http.get<ProductsResponse[]>(url);
   }
 
+  //Login, registro y token
+
   login(email:string, password:string){
     const url = `${ this.baseUrl }/auth/login`;
     return this.http.post<LoginResponse>(url, {email, password})
     .pipe(
       tap( resp => {
         if ( resp.access_token ) {
-          localStorage.setItem('token', resp.access_token! );
+          this.saveToken(resp.access_token);
+          this.saveRefreshToken(resp.access_token);
         }
       }),
+      switchMap(() => this.getProfile()
+      )
     );
   }
   
@@ -88,26 +94,91 @@ export class StoreService {
     const body = { name, email, password, avatar };
 
     return this.http.post<RegisterResponse>( url, body )
-/*       .pipe(
-        switchMap(() => this.login(name, password))
-      ); */
-
   }
 
-  validateToken(): Observable<boolean> {
-
-    const url = `${ this.baseUrl }/auth/profile`;
-    return this.http.get<LoginResponse>( url, { context: checkToken() } )
+  registerAndLogin( name: string, email: string, password: string ) {
+    return this.register(name, email, password)
     .pipe(
-      map( resp => {
-        return true;
-      }),
-      catchError( err => of(false) )
+      switchMap(() => this.login(email, password))
     );
   }
 
-  logout() {
-    localStorage.clear();
+  saveToken(token:string){
+    setCookie('token', token, {expires:365, path: '/'});
+  }
+
+  getToken(){
+    const token = getCookie('token');
+    return token;
+  }
+
+  logout(){
+    removeCookie('token');
+    removeCookie('refresh-token');
+    this.existToken$.next(false);
+  }
+
+  saveRefreshToken(token:string){
+    setCookie('refresh-token', token, {expires:365, path: '/'});
+  }
+
+  getRefreshToken(){
+    const token = getCookie('refresh-token');
+    return token;
+  }
+
+/*   logoutRefresh(){
+    removeCookie('refresh-token');
+  } */
+
+  refreshToken(refreshToken:string){
+    const url = `${ this.baseUrl }/auth/refresh-token`;
+    return this.http.post<LoginResponse>(url, {refreshToken})
+    .pipe(
+      tap( resp => {
+        if ( resp.access_token ) {
+          this.saveToken(resp.access_token);
+          this.saveRefreshToken(resp.access_token);
+        }
+      }),
+    );
+  }
+
+  getProfile() :Observable<RegisterResponse> {
+    const url = `${ this.baseUrl }/auth/profile`;
+    return this.http.get<RegisterResponse>( url, { context: checkToken() } )
+  }
+
+  validateToken() {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    const decodeToken = jwt_decode<JwtPayload>(token);
+    if (decodeToken && decodeToken?.exp) {
+      this.existToken$.next(true);
+      const tokenDate = new Date(0);
+      tokenDate.setUTCSeconds(decodeToken.exp);
+      const today = new Date();
+      return tokenDate.getTime() > today.getTime();
+    }
+    return false;
+  }
+
+  validateRefreshToken() {
+    const token = this.getRefreshToken();
+    if (!token) {
+      return false;
+    }
+    const decodeToken = jwt_decode<JwtPayload>(token);
+    if (decodeToken && decodeToken?.exp) {
+      this.existToken$.next(true);
+      const tokenDate = new Date(0);
+      tokenDate.setUTCSeconds(decodeToken.exp);
+      const today = new Date();
+      return tokenDate.getTime() > today.getTime();
+    }
+    return false;
   }
 
 }

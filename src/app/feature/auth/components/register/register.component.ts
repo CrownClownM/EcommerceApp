@@ -29,11 +29,11 @@ export class RegisterComponent {
     let { name, email, password } = this.miFormulario.value;
     name = name.replace(/\s{2,}/g, ' ').trim();
     email = email.replace(/\s{2,}/g, ' ').trim();
-    this.store.register( name, email, password )
+    this.store.registerAndLogin( name, email, password )
       .subscribe({
         next: (user:any) => {
           if ( user ) {
-            this.router.navigateByUrl('/auth');
+            this.router.navigateByUrl('/user');
             Swal.fire({
               icon: 'success',
               title: 'Cuenta creada correctamente',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductsResponse } from 'src/app/shared/interfaces/store.interface';
+import { RegisterResponse } from 'src/app/shared/interfaces/auth.interface';
 import { StoreService } from 'src/app/shared/services/store.service';
 
 @Component({
@@ -10,35 +10,18 @@ import { StoreService } from 'src/app/shared/services/store.service';
 })
 export class UserComponent implements OnInit {
 
-  length: number = 0;
-  index: number = 0;
-  products: ProductsResponse[] = []; 
-  productsPaginator : ProductsResponse[] = [];
+  profile: RegisterResponse | null  = null;
 
-  constructor(private store:StoreService, private router:Router) { }
+  constructor(private store: StoreService, private router:Router) { }
 
   ngOnInit(): void {
-    this.store.allProducts()
-    .subscribe( products => {
-      this.products = products.slice(0,12);
-      this.productsPaginator = products;
-      this.length = products.length;
-    });
+    this.store.getProfile()
+    .subscribe(profile => this.profile = profile);
   }
 
-  paginated(productsPaginated:ProductsResponse[]){
-    this.products = productsPaginated;
-  }
-
-  update(productsUpdated:ProductsResponse[]){
-    this.products = productsUpdated.slice(0,12);
-    this.productsPaginator = productsUpdated;
-    this.length = productsUpdated.length;
-  }
-
-  logout() {
-    localStorage.clear();
-    this.router.navigateByUrl('/');
+  logout(){
+    this.store.logout();
+    this.router.navigate(['/auth']);
   }
 
 }

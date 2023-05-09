@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ValidateTokenGuard } from './core/guards/validate-token.guard';
+import { RedirectGuard } from './core/guards/redirect.guard';
 
 const routes: Routes = [
 
@@ -11,7 +12,8 @@ const routes: Routes = [
   },  
   {
     path: 'auth',
-    loadChildren: () => import('./feature/auth/auth.module').then( m => m.AuthModule )
+    loadChildren: () => import('./feature/auth/auth.module').then( m => m.AuthModule ),
+    canActivate: [RedirectGuard],
   },  
   {
     path: 'user',

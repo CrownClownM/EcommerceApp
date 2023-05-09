@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ProductsResponse } from 'src/app/shared/interfaces/store.interface';
 import { StoreService } from 'src/app/shared/services/store.service';
+import { Sort } from '@angular/material/sort';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,16 +13,40 @@ import Swal from 'sweetalert2';
   styleUrls: ['./table.component.css']
 })
 
-
 export class TableComponent {
 
-
   @Input() products: ProductsResponse[] = [];
+  @Input() totalProducts: ProductsResponse[] = [];
   @Output() newTable: EventEmitter<ProductsResponse[]> = new EventEmitter();
 
-  constructor(private dialog: MatDialog, private store:StoreService ) { }
+  constructor(private dialog: MatDialog, private store:StoreService) { }
 
-/*   displayedColumns: string[] = ['title', 'price', 'description', 'category', 'action']; */
+  displayedColumns: string[] = ['image', 'title', 'price', 'description', 'category', 'action'];
+
+  sortData(sort: Sort) {
+    const data = this.totalProducts;
+    if (!sort.active || sort.direction === '') {
+      this.totalProducts = data;
+      return;
+    }
+
+    this.products = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'title':
+          return compare(a.title, b.title, isAsc);
+        case 'price':
+          return compare(a.price, b.price, isAsc);
+        case 'description':
+          return compare(a.description, b.description, isAsc);
+        case 'category':
+          return compare(a.category.name, b.category.name, isAsc);
+        default:
+          return 0;
+      }
+    });
+    this.products = this.products.slice(0,12);
+  }
 
   dialogForm() {
     const dialogRef = this.dialog.open(DialogComponent);
@@ -52,8 +77,8 @@ export class TableComponent {
       text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
       confirmButtonText: '¡Sí, eliminar!',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -71,4 +96,8 @@ export class TableComponent {
       }
     });
   }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
