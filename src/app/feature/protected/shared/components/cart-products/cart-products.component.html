@@ -1,0 +1,20 @@
+<div class="main">
+    <img src="{{product?.images}}" alt="product"/>
+    <div class="contain">
+      <h3 routerLink="/product/{{product?.id}}">{{product?.title}}</h3>
+      <p>{{product?.description}}</p>
+    </div>
+    <div class="buttonsContainer">
+        <button (click)="decrease()">
+            -
+            </button>
+            <span>{{product?.quantity}}</span>
+            <button (click)="increase()">
+            +
+            </button>
+            <span>x ${{product?.price}}</span>
+    </div>
+    <p class="total">Total: $</p>
+    <i class="fa-solid fa-trash" type="button" style="color: #ff0000;" (click)="remove()"></i>
+</div>
+

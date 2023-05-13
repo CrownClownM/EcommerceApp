@@ -181,4 +181,37 @@ export class StoreService {
     return false;
   }
 
+  //Cart
+
+  getCart(){
+    const data = JSON.parse(localStorage.getItem('cart') || '{}');
+    return data;
+  }
+
+  saveCart(data:ProductsResponse, quantity=1){
+    data.quantity = quantity;
+    if(localStorage.getItem('cart') != undefined){
+      var cart = this.getCart();
+      console.log(cart);
+      cart.push(data);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } else {
+      var cart1:any[] = [];
+      cart1.push(data);
+      localStorage.setItem('cart', JSON.stringify(cart1));
+    }
+  }
+
+  deleteProductCart(id:number){
+    var cart = this.getCart();
+    for (var i = 0; i < cart.length; i++) {
+      if (cart[i].id == id) {
+        console.log(cart[i].id);
+        cart.splice(i, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        break;
+      }
+    }
+  }
+
 }

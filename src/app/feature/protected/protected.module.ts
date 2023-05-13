@@ -9,6 +9,7 @@ import { TableComponent } from './shared/components/table/table.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CartProductsComponent } from './shared/components/cart-products/cart-products.component';
 
 
 
@@ -18,7 +19,8 @@ import { CartComponent } from './pages/cart/cart.component';
         TableComponent,
         DialogComponent,
         AdminComponent,
-        CartComponent
+        CartComponent,
+        CartProductsComponent
     ],
     imports: [
         CommonModule,

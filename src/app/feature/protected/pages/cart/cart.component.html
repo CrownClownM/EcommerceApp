@@ -1,1 +1,12 @@
-<p>cart works!</p>
+<div class="main">
+    <div class="listProducts">
+        <h1>Cesta de la compra</h1>
+        <app-cart-products *ngFor="let product of cart" [product]="product" (update)="update($event)"></app-cart-products>
+    </div>
+    <div class="buy">
+        <h1>Resumen</h1>
+        <h3>Total a pagar: <span>$50.000</span></h3>
+        <h3>Envío: <span>Gratis</span> </h3>
+        <button>Realizar compra</button>
+    </div>
+</div>

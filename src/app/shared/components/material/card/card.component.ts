@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductsResponse } from 'src/app/shared/interfaces/store.interface';
+import { StoreService } from 'src/app/shared/services/store.service';
 
 @Component({
   selector: 'app-card',
@@ -9,10 +10,22 @@ import { ProductsResponse } from 'src/app/shared/interfaces/store.interface';
 export class CardComponent implements OnInit {
 
   @Input() product !: ProductsResponse;
+  cart: ProductsResponse[] = [];
 
-  constructor() { }
+  constructor(private store:StoreService) { }
 
   ngOnInit(): void {
+    this.cart = this.store.getCart();
+  }
+
+  addProduct(){
+    this.store.saveCart(this.product);
+    this.play();
+  }
+
+  play() {
+    const audio = new Audio('assets/buy.mp3');
+    audio.play();
   }
 
 }

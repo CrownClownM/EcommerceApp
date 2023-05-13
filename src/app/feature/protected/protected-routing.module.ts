@@ -4,6 +4,7 @@ import { UserComponent } from './pages/user/user.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ValidateRoleGuard } from 'src/app/core/guards/validate-role.guard';
 import { ValidateRoleAdminGuard } from 'src/app/core/guards/validate-role-admin.guard';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,10 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [ValidateRoleAdminGuard],
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   }
 
 ];

@@ -7,6 +7,7 @@ export interface ProductsResponse{
     creationAt:  Date;
     updatedAt:   Date;
     category:    Category;
+    quantity?: number;
 }
 
 export interface Category {

@@ -15,11 +15,15 @@
     <p>{{product.description}}</p>
     <h5>Cantidad:</h5>
     <div class="add flex1">
-      <span>-</span>
-      <label>1</label>
-      <span>+</span>
+      <button style=" width: '30px'; height: '30px'; borderRadius: '50%'; display: 'flex'; justifyContent: 'center'; alignItems: 'center'; marginRight: '10px' " (click)="decrease()">
+        -
+        </button>
+        <span class="quantity">{{product.quantity || 1}}</span>
+        <button style=" width: '30px'; height: '30px'; borderRadius: '50%'; display: 'flex'; justifyContent: 'center'; alignItems: 'center'; marginRight: '10px' " (click)="increase()">
+        +
+      </button>
     </div>
-    <button>Agregar al carrito</button>
+    <button (click)="addProduct()">Agregar al carrito</button>
     <button class="back" routerLink="/products">Volver al catalogo</button>
   </div>
 </div>
