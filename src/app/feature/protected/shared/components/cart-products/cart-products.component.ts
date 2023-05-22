@@ -9,12 +9,16 @@ import { StoreService } from 'src/app/shared/services/store.service';
 })
 export class CartProductsComponent implements OnInit {
 
-  @Input() product : ProductsResponse | null = null;
+  @Input() product !: ProductsResponse;
   @Output() update: EventEmitter<ProductsResponse[]> = new EventEmitter();
+  total : number = 0;
 
   constructor(private store:StoreService) { }
 
   ngOnInit(): void {
+    if(this.product.quantity!=null){
+      this.total = this.product.price * this.product.quantity;
+    }
   }
 
   increase(){
@@ -22,19 +26,23 @@ export class CartProductsComponent implements OnInit {
       var c = this.product?.quantity ?? 1;
       c = c + 1;
       this.product.quantity = c;
+      this.total = this.total + this.product.price;
     }
   }
 
   decrease(){
     if(this.product != null){
-      var c = this.product?.quantity ?? 1;
-      c = c - 1;
-      this.product.quantity = c;
+      if(this.product.quantity!==1){
+        var c = this.product?.quantity ?? 1;
+        c = c - 1;
+        this.product.quantity = c;
+        this.total = this.total - this.product.price;
+      }
     }
   }
 
-  remove(){
-    this.store.deleteProductCart(this.product!.id);
+  remove(id:number){
+    this.store.deleteProductCart(id);
     const cart = this.store.getCart()
     this.update.emit(cart);
   }

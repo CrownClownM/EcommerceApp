@@ -42,6 +42,7 @@ span {
     border: 1px solid #ccc; 
     padding: 20px; 
     border-radius: 3px;
+    margin: 10px 0px;
 }
 
 .main i {
@@ -66,5 +67,5 @@ span {
     margin: 0; 
     font-size: 1.2rem; 
     font-weight: 500;
-    color: #000000;
+    color: var(--background);
 }

@@ -1,20 +1,19 @@
 <div class="main">
-    <img src="{{product?.images}}" alt="product"/>
+    <img src="{{product.images}}" alt="product"/>
     <div class="contain">
-      <h3 routerLink="/product/{{product?.id}}">{{product?.title}}</h3>
-      <p>{{product?.description}}</p>
+      <h3 routerLink="/product/{{product.id}}">{{product.title}}</h3>
+      <p>{{product.description}}</p>
     </div>
     <div class="buttonsContainer">
         <button (click)="decrease()">
             -
             </button>
-            <span>{{product?.quantity}}</span>
+            <span>{{product.quantity}}</span>
             <button (click)="increase()">
             +
             </button>
-            <span>x ${{product?.price}}</span>
+            <span>x ${{product.price}}</span>
     </div>
-    <p class="total">Total: $</p>
-    <i class="fa-solid fa-trash" type="button" style="color: #ff0000;" (click)="remove()"></i>
+    <p class="total" *ngIf="product!=null">Total: ${{total}}</p>
+    <i class="fa-solid fa-trash" type="button" style="color: #ff0000;" (click)="remove(product.id)"></i>
 </div>
-

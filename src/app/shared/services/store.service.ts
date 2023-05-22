@@ -214,4 +214,17 @@ export class StoreService {
     }
   }
 
+  getRecord(){
+    const data = JSON.parse(localStorage.getItem('cart') || '{}');
+    return data;
+  }
+
+  saveRecord(){
+    var cart = this.getCart();
+    var cart1 : any = [];
+    localStorage.setItem('redord', JSON.stringify(cart));
+    localStorage.removeItem('cart');
+    localStorage.setItem('cart', JSON.stringify(cart1));
+  }
+
 }

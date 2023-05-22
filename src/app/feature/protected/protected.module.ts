@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProtectedRoutingModule } from './protected-routing.module';
@@ -10,6 +10,10 @@ import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartProductsComponent } from './shared/components/cart-products/cart-products.component';
+import { CreditCardComponent } from './shared/components/credit-card/credit-card.component';
+import { CreditNumberPipe } from './shared/pipes/credit-number.pipe';
+import { CreditNamePipe } from './shared/pipes/credit-name.pipe';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 
 
@@ -20,13 +24,18 @@ import { CartProductsComponent } from './shared/components/cart-products/cart-pr
         DialogComponent,
         AdminComponent,
         CartComponent,
-        CartProductsComponent
+        CartProductsComponent,
+        CreditCardComponent,
+        CreditNumberPipe,
+        CreditNamePipe,
+        PaymentComponent
     ],
     imports: [
         CommonModule,
         ProtectedRoutingModule,
         SharedModule,
         ReactiveFormsModule, 
+        FormsModule
     ]
 })
 export class ProtectedModule { }

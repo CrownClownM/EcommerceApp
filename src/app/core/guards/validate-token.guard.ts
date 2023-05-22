@@ -12,6 +12,7 @@ export class ValidateTokenGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | boolean { 
     const isValidToken = this.store.validateRefreshToken();
+    console.log("Primer guard");
     if (isValidToken) {
       return true;
     }

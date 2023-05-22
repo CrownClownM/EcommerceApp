@@ -15,6 +15,7 @@ export class ValidateRoleAdminGuard implements CanActivate {
   async canActivate(): Promise<boolean> {
     const profile$ = this.store.getProfile();
     this.profile = await firstValueFrom(profile$);
+    console.log("Segundo guard");
     if (this.profile?.role == 'admin') {
       return true;
     } else {

@@ -1,5 +1,7 @@
 table {
-    width: 100%
+    width: 100%;
+    background-color: var(--text);
+    color: var(--background);
 }
 
 button {
@@ -24,11 +26,6 @@ img {
 .create {
     background-color: rgb(5, 170, 5);
     color: white;
-}
-
-.table {
-    background-color: var(--text);
-    color: var(--background);
 }
 
 .container1 {

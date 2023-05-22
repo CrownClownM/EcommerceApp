@@ -2,6 +2,7 @@
     --alt-color: #e1a743;
     --alt-color-hover: #faaa20;
     --background: #000000;
+    --back: rgb(245,245,245);
     --text: rgb(255, 255, 255);
     --gra: linear-gradient(45deg, #e1a743, #ffa200);
     --mode: #325bb3;
@@ -32,6 +33,7 @@ body {
 
 .night-theme {
     --background: #ffffff;
+    --back: rgb(14, 14, 14);
     --text: rgb(0, 0, 0);
     --mode-hover: #e1a743;
     --box:rgba(255, 255, 255, 0.3);
