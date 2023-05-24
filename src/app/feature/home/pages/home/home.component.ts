@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
       .subscribe( categories => this.categories = categories);
     this.store.someProducts(this.quantity)
       .subscribe( products => this.products = products);
+    this.store.saveVoidCart();
   }
 
 }

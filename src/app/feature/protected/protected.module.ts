@@ -14,6 +14,7 @@ import { CreditCardComponent } from './shared/components/credit-card/credit-card
 import { CreditNumberPipe } from './shared/pipes/credit-number.pipe';
 import { CreditNamePipe } from './shared/pipes/credit-name.pipe';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { RecordComponent } from './shared/components/record/record.component';
 
 
 
@@ -28,7 +29,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
         CreditCardComponent,
         CreditNumberPipe,
         CreditNamePipe,
-        PaymentComponent
+        PaymentComponent,
+        RecordComponent
     ],
     imports: [
         CommonModule,

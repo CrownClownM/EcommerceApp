@@ -13,8 +13,8 @@
     </div>
     <div class="buy">
         <h1>Resumen</h1>
-        <h3>Total a pagar: <span>$50.000</span></h3>
+        <h3>Total a pagar: <span>${{total}}</span></h3>
         <h3>Envío: <span>Gratis</span> </h3>
-        <button routerLink="/user/payment" [disabled]="cart?.length==0">Realizar compra</button>
+        <button routerLink="/user/payment" [disabled]="cart.length==0">Realizar compra</button>
     </div>
 </div>

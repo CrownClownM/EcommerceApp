@@ -9,16 +9,27 @@ import { StoreService } from 'src/app/shared/services/store.service';
 })
 export class CartComponent implements OnInit {
 
-  cart : ProductsResponse[] | null =null;
+  cart !: ProductsResponse[];
+  total : number = 0;
 
   constructor(private store:StoreService) { }
 
   ngOnInit(): void {
     this.cart = this.store.getCart();
+    this.totalCart(this.cart);
+    this.store.saveVoidCart();
   }
 
   update(productsUpdate:ProductsResponse[]){
     this.cart = productsUpdate;
+    console.log(this.cart);
+    this.totalCart(this.cart);
+  }
+
+  totalCart(cart:ProductsResponse[]){
+    for(let i in cart){
+      this.total = this.total + cart[i].price;
+    }
   }
 
 }

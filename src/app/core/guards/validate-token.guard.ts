@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { StoreService } from 'src/app/shared/services/store.service';
 
 @Injectable({
@@ -10,7 +9,7 @@ export class ValidateTokenGuard implements CanActivate {
 
   constructor( private store: StoreService, private router: Router ){}
 
-  canActivate(): Observable<boolean> | boolean { 
+  canActivate(): boolean { 
     const isValidToken = this.store.validateRefreshToken();
     console.log("Primer guard");
     if (isValidToken) {
@@ -20,7 +19,7 @@ export class ValidateTokenGuard implements CanActivate {
     return false;
   }
 
-  canLoad(): Observable<boolean> | boolean {
+  canLoad(): boolean {
     const isValidToken = this.store.validateRefreshToken();
     if (isValidToken) {
       return true;

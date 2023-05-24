@@ -202,6 +202,13 @@ export class StoreService {
     }
   }
 
+  saveVoidCart(){
+    if(localStorage.getItem('cart') == undefined){
+      var cart:any[] = [];
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }
+
   deleteProductCart(id:number){
     var cart = this.getCart();
     for (var i = 0; i < cart.length; i++) {
@@ -215,14 +222,14 @@ export class StoreService {
   }
 
   getRecord(){
-    const data = JSON.parse(localStorage.getItem('cart') || '{}');
+    const data = JSON.parse(localStorage.getItem('record') || '{}');
     return data;
   }
 
   saveRecord(){
-    var cart = this.getCart();
+    var cart : ProductsResponse[] = this.getCart();
     var cart1 : any = [];
-    localStorage.setItem('redord', JSON.stringify(cart));
+    localStorage.setItem('record', JSON.stringify(cart));
     localStorage.removeItem('cart');
     localStorage.setItem('cart', JSON.stringify(cart1));
   }

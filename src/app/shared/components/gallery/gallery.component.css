@@ -1,4 +1,4 @@
-section {
+.section {
   margin: 0 auto;
   display: flex;
   width: 100%;
@@ -6,7 +6,7 @@ section {
   cursor: pointer;
  }
 
-section img {
+.section img {
   width: 0px;
   flex-grow: 1;
   object-fit: cover;
@@ -14,7 +14,7 @@ section img {
   transition: .5s ease;
 }
 
-section img:hover {
+.section img:hover {
   width: 100px;
   opacity: 1;
   filter: contrast (120%);
@@ -22,11 +22,11 @@ section img:hover {
 
 @media only screen and (max-width: 1100px) {
 
-  section {
+  .section {
     height: 400px;
    }
 
-  section img:hover {
+  .section img:hover {
     width: 50px;
     opacity: 1;
     filter: contrast (120%);
@@ -36,11 +36,11 @@ section img:hover {
 
 @media only screen and (max-width: 600px) {
 
-  section {
+  .section {
     height: 200px;
    }
 
-  section img:hover {
+  .section img:hover {
     width: 20px;
     opacity: 1;
     filter: contrast (120%);
