@@ -68,8 +68,12 @@ span {
       display: block;
     }
 
+    .but {
+        text-align: center;
+    }
+
     button {
-        width: 50%;
+        width: 80%;
     }
     
     .go {

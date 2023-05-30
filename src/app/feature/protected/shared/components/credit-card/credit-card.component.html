@@ -1,5 +1,5 @@
-
 <div class="contenedor">
+
     <!-- Tarjeta Delantera -->
     <section class="tarjeta" id="tarjeta" #card (click)=" rotate(card) ">
         <div class="delantera">
@@ -22,14 +22,14 @@
                 <div class="flexbox">
                     <div class="grupo">
                         <p class="label" 
-                            >Nombre</p>
+                            >Card Holder</p>
                         <p *ngIf=" cardName !== '' "
                            class="nombre"  
                            id="nombre"> {{ cardName | uppercase | creditName }} 
                         </p>
                         <p *ngIf=" cardName == '' "
                            class="nombre"  
-                           id="nombre"> Steven
+                           id="nombre"> Jhon Doe 
                         </p>
                     </div>
                     <div class="grupo" id="expiracion">
@@ -43,12 +43,13 @@
         <!-- Tarjeta trasera -->
         <div class="trasera">
             <div class="barra-magnetica"></div>
-                <div class="datos">
-                    <div class="grupo" id="ccv">
-                        <p class="label" id="cvvLabel"> CVV </p>
-                        <p class="ccvP text-end" id="codigo"> {{ cvv }} </p>
-                    </div>
+            <div class="datos">
+                <div class="grupo" id="ccv">
+                    <p class="label" id="cvvLabel"> CVV </p>
+                    <p *ngIf=" cvvNumber !== '' " class="ccvP text-end" id="codigo"> {{ cvvNumber }} </p>
+                    <p *ngIf=" cvvNumber == '' " class="ccvP text-end" id="codigo"> *** </p>
                 </div>
+            </div>
             <div class="logo-marca back" id="logo-marca-trasera"></div>
         </div>
     </section>
@@ -62,33 +63,39 @@
     </div>
 
     <!-- Formulario -->
-    <form class="formulario-tarjeta" #formulario="ngForm"
-          id="formulario-tarjeta">
+    <form [formGroup]="miFormulario" class="formulario-tarjeta" 
+    id="formulario-tarjeta" (ngSubmit)="payment()">
         <div class="grupo">
             <label for="inputNumero">Número Tarjeta</label>
             <input  type="text" 
                     id="inputNumero"
                     name="cardNumber"
-                    [(ngModel)]="cardNumber"
                     maxlength="19"
-                    minlength="4"
-                    pattern="^\d*$"
-                    autocomplete="off" 
-                    (keyup)="complete( formulario )"
-                    >
+                    formControlName="number"
+                    #numero
+                    (click)="voltearTarjeta()"
+                    (keyup)="addNumber(numero.value)"
+                    (keyup)="complete(miFormulario)"
+                    required>
+            <span class="error" *ngIf="campoValido('number')">
+                    Debe ser un numero de 16 digitos
+            </span>
         </div>
         <div class="grupo">
             <label for="inputNombre">Nombre</label>
             <input type="text" 
                    id="inputNombre" 
                    name="cardName"
-                   pattern="/!?^[a-zA-Z\d][a-zA-Z]*$/igm"
-                   [(ngModel)]= " cardName "
-                   maxlength="24"
-                   autocomplete="off"
-                   >
+                   maxlength="20"
+                   formControlName="name"
+                   #nombre
+                   (click)="voltearTarjeta()"
+                   (keyup)="addName(nombre.value)"
+                   required>
+            <span class="error" *ngIf="campoValido('name')">
+                    Deben ser letras
+            </span>
         </div>
-
         <div class="flexbox">
             <div class="grupo expira">
                 <label for="selectMes">Expiración</label>
@@ -96,9 +103,13 @@
                     <div class="grupo-select">
                         <select name="mes" 
                                 id="selectMes"
-                                [(ngModel)]=" month ">
-                            <option disabled>
-                                {{ month }}
+                                formControlName="month"
+                                (click)="voltearTarjeta()"
+                                (change)="addMonth(monthF.value)"
+                                #monthF
+                                required>
+                            <option selected disabled>
+                                {{  "Month" || month }}
                             </option>
                             <option *ngFor="let mes of mesesYear"
                                     id="mes"> {{ mes }} 
@@ -109,40 +120,48 @@
                     <div class="grupo-select">
                         <select name="year" 
                                 id="selectYear"
-                                [(ngModel)]=" year " 
+                                formControlName="year"
+                                (click)="voltearTarjeta()"
+                                (change)="addYear(yearF.value)"
+                                #yearF
                                 required>
-                            <option disabled>{{ year }}</option>
+                            <option disabled selected>{{ "Year" || year }}</option>
                             <option *ngFor="let year of years"> {{ year }}</option>
                         </select>
                         <i class="fas fa-angle-down"></i>
                     </div>
                 </div>
+                <span class="error1" *ngIf="campoValido('month')||campoValido('year')">
+                    Campo obligatorio
+                </span>
             </div>
             <div class="grupo ccv">
                 <label for="inputCCV">CVV</label>
-                <input type="text" 
+                <input class="cvv" type="text" 
                        id="inputCCV"
                        name="inputCCV"
-                       [(ngModel)]=" cvv "
-                       placeholder=" "
                        maxlength="3" 
-                       autocomplete="off"
+                       formControlName="cvv"
+                       #cvvNum
                        (click)="rellenarCVV()"
+                       (keyup)="addCvv(cvvNum.value)"
                        required>
+                <span class="error" *ngIf="campoValido('cvv')">
+                        Debe ser 3 digitos
+                </span>
             </div>
         </div>
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-2 butt">
             <button 
                     type="button" 
                     class="btn btn-danger row"
                     routerLink="/user/cart"
                     >Regresar al carrito</button>
-            <button
-                    type="button" 
+            <button [disabled]="miFormulario.invalid"
+                    type="submit" 
                     class="btn btn-primary row"
-                    (click)="payment()"
-                    [disabled]="!formulario.invalid"
-                    >Realizar pago</button>
+                    >Enviar</button>
         </div>
     </form>
+    
 </div>

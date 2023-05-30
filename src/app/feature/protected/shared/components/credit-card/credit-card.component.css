@@ -1,8 +1,4 @@
 /* Definiendo distribución del contenido de la card; width, flex, center, padding */
-.main {
-    background: var(--back);
-}
-
 .contenedor{
     width: 750px;
     max-width: 100%;
@@ -10,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
+    margin-top: 3rem;
 }
 
 /* ----------------- Estilos globales de la tarjeta ----------------- */
@@ -25,11 +21,6 @@
     user-select: none;
     cursor: pointer;
     z-index: 2;
-}
-
-button {
-    width: 50%;
-    margin: 1px;
 }
 
 /* animation, rotation 180deg */
@@ -47,6 +38,18 @@ button {
     box-shadow: -10px 10px 15px rgba(48, 60, 74, 0.6) ;
 }
 
+.grupo .error {
+    color: red;
+    display:block;
+    text-align:center;
+  }
+  
+.grupo .error1 {
+    color: red;
+    display:block;
+    text-align:center;
+    padding-top: 5px;
+  } 
 /* --------------- Tarjeta Delantera --------------- */
 
 /* Estilo de fondo de la tarjeta */
@@ -205,6 +208,7 @@ button {
 /* ---------------- Contenedor Boton ----------------*/
 
 .contenedor-btn .btn-abrir-formulario {
+    margin: 0px;
     background: #2364d2;
     color: #fff;
     font-size: 1.6rem;
@@ -284,6 +288,11 @@ button {
     text-transform: uppercase;
 }
 
+.formulario-tarjeta .cvv {
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
 .formulario-tarjeta .flexbox {
     display: flex;
     justify-content: space-between;
@@ -345,4 +354,13 @@ button {
 
 .formulario-tarjeta .btn-enviar:hover{
     background: #1850b1;
+}
+
+.butt {
+    padding-top: 20px;
+}
+
+button {
+    width: 50%;
+    margin: 1px;
 }

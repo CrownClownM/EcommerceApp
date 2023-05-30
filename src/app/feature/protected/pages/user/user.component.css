@@ -1,3 +1,7 @@
+.main {
+    min-height: 65.8vh;
+}
+
 .head {
     display: flex;
     justify-content: space-between;

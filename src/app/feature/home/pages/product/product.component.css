@@ -115,10 +115,23 @@
     .left, .right {
       width: 100%;
     }
+
+    .right {
+      padding: 28px;
+    }
   
     .container {
       flex-direction: column;
     }
+
+    .flex1{
+      justify-content: space-between;
+    }
+
+    .add .quantity {
+      padding: 10px 120px 0 100px;
+    }
+
   }
   
   @media only screen and (max-width:511px) {
